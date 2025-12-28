@@ -52,7 +52,40 @@ link-citations: true
 ---
 ```
 
-Then add any referenced images in `content/images/`. Add citations with the name `references.bib` in `content/`, for example by exporting from Zotero.
+### Citations
+Add citations with the name `references.bib` in `content/`, for example by exporting from Zotero. In the Markdown file you can reference these citations like this:
+
+- Single Citation: [@reference1] renders as [1].
+- Grouped Citation: [@reference1; @reference2] renders as [1, 2].
+
+**Note:** You must use a semicolon `;` to separate multiple citations. Using a comma will result in incorrect formatting [1], [2].
+
+
+### Images
+Place images in `content/images/` and use standard Markdown syntax. We recommend using width=90% to nicely frame the image within the column.
+
+```markdown
+![This is the caption text.](images/figure1.png){#fig:label width=90%}
+```
+
+For large diagrams spanning the full page width, use a raw LaTeX block:
+
+```latex
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{content/images/wide_figure.png}
+  \caption{Wide caption text}
+  \label{fig:wide_label}
+\end{figure*}
+```
+
+### References Section
+Pandoc will automatically append the bibliography to the very end of your document, but it does not generate a section header. You must manually add this header at the bottom of your Markdown file:
+
+```markdown
+
+# References
+```
 
 ### Building the PDF
 You can compile your document by running `make` from the root directory. This command automatically detects the markdown file in your content folder and produces a PDF. If you want to build and immediately preview the result, use `make open`. To save the output with a specific filename, use `make name=custom_filename`. When you are finished, `make clean` will remove any generated PDF files.
