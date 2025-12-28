@@ -1,0 +1,100 @@
+\documentclass[twocolumn, 10pt]{article}
+
+% --- CORE LAYOUT & PACKAGES ---
+\usepackage[margin=0.75in]{geometry}
+\setlength{\columnsep}{0.4in} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{calc}
+
+% --- CAPTION STYLING ---
+% font=small: Makes caption text smaller than body text
+% labelfont=bf: Makes "Figure 1" bold
+% textfont=it: Makes the caption text italic
+\usepackage[font=small,labelfont=bf,textfont=it]{caption}
+
+% --- HYPERREF (Links Setup) ---
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=red, filecolor=blue]{hyperref}
+
+% --- PANDOC COMPATIBILITY ---
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\makeatletter
+\newcommand{\citeproctext}[2][]{#2}
+\makeatother
+\newcommand{\citeproc}[2]{#2} 
+
+% --- CSL REFERENCES SETUP ---
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+
+\newenvironment{CSLReferences}[2] 
+ {%
+  \begin{list}{}{%
+   \setlength{\itemindent}{0pt}
+   \setlength{\leftmargin}{0pt}
+   \setlength{\parsep}{0pt}
+   \setlength{\labelwidth}{0pt}
+   \setlength{\labelsep}{0pt}
+   \setlength{\itemsep}{#2\baselineskip}
+   % Suppress the default list label
+   \renewcommand{\makelabel}[1]{}
+  }%
+ }
+ {\end{list}}
+
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+
+% \strut forces the height of the line to be consistent.
+% \phantomsection creates the link target.
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut\phantomsection#1}}
+
+% Subtract 1em from the width to prevent line-wrapping issues.
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth - 1em}{\strut#1}\vspace{0.5em}} 
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+% --- DOCUMENT METADATA ---
+\renewenvironment{abstract}
+ {
+  \centerline{\Large\textbf{Abstract}}
+  \vspace{0.5em}
+  \small 
+ }
+ {\par\bigskip}
+
+\title{\textbf{$title$}}
+
+\author{
+$for(author)$
+  \large $author.name$ \\[ -0.8ex]
+  \small \texttt{$author.email$}
+$endfor$
+}
+
+% REMOVE DATE
+\date{}
+
+% --- DOCUMENT BODY ---
+\begin{document}
+
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    $if(abstract)$
+    \begin{abstract}
+    $abstract$
+    \end{abstract}
+    \vspace{1em}
+    $endif$
+  \end{@twocolumnfalse}
+]
+
+$body$
+
+\end{document}

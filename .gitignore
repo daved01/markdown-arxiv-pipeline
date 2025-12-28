@@ -1,0 +1,26 @@
+# MacOS system files
+.DS_Store
+
+# LaTeX and Pandoc generated files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.xdv
+
+# Input files
+content/*.md
+content/images/*.png
+
+# Generated PDF output (we usually don't track binary outputs)
+content/*.pdf
+*.pdf
+
+# Generated submission tex file (optional, usually generated on demand)
+submission.tex
+
+# Editors
+.vscode/
